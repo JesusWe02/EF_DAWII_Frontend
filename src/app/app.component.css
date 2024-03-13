@@ -1,0 +1,44 @@
+html,
+body {
+  height: 100%;
+}
+
+.navbar {
+  min-height: 70px;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+.nav-item {
+  margin-left: 15px;
+  font-size: 22px;
+}
+
+.navbar-brand {
+  font-size: 18px;
+  font-family: sans-serif;
+  font-weight: bold;
+}
+
+.container {
+  display: grid;
+  place-items: center;
+}
+
+.footer {
+  margin-top: auto;
+  padding: 20px 0;
+}
+
+.footer a:hover {
+  color: #ffffff;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 16px;
+}

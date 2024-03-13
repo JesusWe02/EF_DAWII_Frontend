@@ -1,0 +1,117 @@
+<div class="container" style="width: 600px; margin: auto">
+  <div *ngIf="currentuser" class="card mt-3">
+    <div class="card-body edit-form">
+      <h3 class="card-title text-center">Usuario</h3>
+
+      <form>
+        <div class="form-group">
+          <label for="username">Nombre de Usuario</label>
+          <input
+            type="text"
+            class="form-control"
+            id="username"
+            [(ngModel)]="currentuser.username"
+            name="username"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="name">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            [(ngModel)]="currentuser.name"
+            name="name"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="lastname">Apellido</label>
+          <input
+            type="text"
+            class="form-control"
+            id="lastname"
+            [(ngModel)]="currentuser.lastname"
+            name="lastname"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            [(ngModel)]="currentuser.email"
+            name="email"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="password">Contraseña</label>
+          <input
+            type="password"
+            class="form-control"
+            id="password"
+            [(ngModel)]="currentuser.password"
+            name="password"
+          />
+        </div>
+        <div class="form-group">
+          <label for="kind">Tipo</label>
+          <select
+            class="form-control"
+            id="kind"
+            required
+            [(ngModel)]="currentuser.kind"
+            name="kind"
+          >
+            <option value="0" disabled selected hidden>Seleccionar</option>
+            <option [value]="1">Administrador</option>
+            <option [value]="2">Gerente</option>
+            <option [value]="3">Empleado</option>
+            <option [value]="4">Soporte</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="created_at">Fecha de Creación</label>
+          <input
+            type="date"
+            class="form-control"
+            id="created_at"
+            [(ngModel)]="currentuser.created_at"
+            name="created_at"
+          />
+        </div>
+        <div style="display: flex; justify-content: space-between">
+          <button type="submit" class="btn btn-success" (click)="updateUser()">
+            Actualizar Usuario
+          </button>
+
+          <button
+            class="btn btn-primary mr-2"
+            *ngIf="currentuser.is_active"
+            (click)="setAvailableStatus(false)"
+          >
+            Desactivar Usuario
+          </button>
+
+          <button
+            class="btn btn-primary mr-2"
+            *ngIf="!currentuser.is_active"
+            (click)="setAvailableStatus(true)"
+          >
+            Activar Usuario
+          </button>
+
+          <button class="btn btn-danger mr-2" (click)="deleteUser()">
+            Eliminar Usuario
+          </button>
+        </div>
+        <p>{{ message }}</p>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,150 @@
+<form class="container" style="width: 500px" (ngSubmit)="createTicket()">
+  <div class="card mt-4">
+    <div class="card-body">
+      <div *ngIf="!ticketCreated">
+        <h3 class="card-title text-center">Create Ticket</h3>
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            [(ngModel)]="ticket.title"
+            name="title"
+            placeholder="Inserte titulo de la pelicula"
+          />
+        </div>
+        <div class="form-group">
+          <label for="description">Description:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            [(ngModel)]="ticket.description"
+            name="description"
+            placeholder="Inserte descripcion de la pelicula"
+          />
+        </div>
+        <div class="form-group">
+          <label for="updated_at">Updated At:</label>
+          <input
+            type="date"
+            class="form-control"
+            id="updated_at"
+            [(ngModel)]="ticket.updated_at"
+            name="updated_at"
+          />
+        </div>
+        <div class="form-group">
+          <label for="created_at">Created At:</label>
+          <input
+            type="date"
+            class="form-control"
+            id="created_at"
+            [(ngModel)]="ticket.created_at"
+            name="created_at"
+          />
+        </div>
+        <div class="form-group">
+          <label for="kindId">Kind:</label>
+          <select
+            class="form-control"
+            id="kindId"
+            [(ngModel)]="ticket.kind.kindId"
+            name="kindId"
+          >
+            <option value="" disabled selected hidden>Select</option>
+            <option *ngFor="let kind of kinds" [value]="kind.kindId">
+              {{ kind.name }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="userId">User:</label>
+          <select
+            class="form-control"
+            id="userId"
+            [(ngModel)]="ticket.user.userId"
+            name="userId"
+          >
+            <option value="" disabled selected hidden>Select</option>
+            <option *ngFor="let user of users" [value]="user.userId">
+              {{ user.username }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="projectId">Project:</label>
+          <select
+            class="form-control"
+            id="projectId"
+            [(ngModel)]="ticket.project.projectId"
+            name="projectId"
+          >
+            <option value="" disabled selected hidden>Select</option>
+            <option
+              *ngFor="let project of projects"
+              [value]="project.projectId"
+            >
+              {{ project.name }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="categoryId">Category:</label>
+          <select
+            class="form-control"
+            id="categoryId"
+            [(ngModel)]="ticket.category.categoryId"
+            name="categoryId"
+          >
+            <option value="" disabled selected hidden>Select</option>
+            <option
+              *ngFor="let category of categories"
+              [value]="category.categoryId"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="priorityId">Priority:</label>
+          <select
+            class="form-control"
+            id="priorityId"
+            [(ngModel)]="ticket.priority.priorityId"
+            name="priorityId"
+          >
+            <option value="" disabled selected hidden>Select</option>
+            <option
+              *ngFor="let priority of priorities"
+              [value]="priority.priorityId"
+            >
+              {{ priority.name }}
+            </option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="statusId">Status:</label>
+          <select
+            class="form-control"
+            id="statusId"
+            [(ngModel)]="ticket.status.statusId"
+            name="statusId"
+          >
+            <option value="" disabled selected hidden>Select</option>
+            <option *ngFor="let status of status" [value]="status.statusId">
+              {{ status.name }}
+            </option>
+          </select>
+        </div>
+        <div class="text-center">
+          <button type="submit" class="btn btn-success mr-2">
+            Create Ticket
+          </button>
+          <a class="btn btn-primary ml-2" routerLink="/ticket">Back to list</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

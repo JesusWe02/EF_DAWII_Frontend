@@ -1,0 +1,128 @@
+<div class="container mt-4" style="min-width: 1400px; margin: 0 auto">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group mb-4">
+        <div class="input-group-prepend">
+          <a class="btn btn-primary" routerLink="/createUser">New User</a>
+        </div>
+        <input
+          type="text"
+          class="form-control ml-4"
+          placeholder="Buscar por nombre"
+          [(ngModel)]="name"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchByName()"
+          >
+            Buscar
+          </button>
+        </div>
+      </div>
+
+      <h2>Lista de Usuarios</h2>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          style="font-size: 1.2rem"
+          *ngFor="let user of users; let i = index"
+          (click)="setCurrentUser(user, i)"
+          [class.active]="currentUser === user"
+        >
+          {{ user.name }} {{ user.lastname }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-6">
+      <div
+        *ngIf="currentUser"
+        class="card"
+        style="
+          border: 1px solid black;
+          border-radius: 20px;
+          box-shadow: #9c9999 8px 8px 0 0;
+          margin-bottom: 100px;
+        "
+      >
+        <div class="card-body">
+          <h4 class="card-title h2" style="text-align: center">
+            Usuario Seleccionado
+          </h4>
+
+          <div class="ticket-details">
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>ID:</strong></label>
+              <span style="font-size: 20px">{{ currentUser.userId }}</span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>Nombre de Usuario:</strong></label>
+              <span style="font-size: 20px">{{ currentUser.username }}</span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>Nombre:</strong></label>
+              <span style="font-size: 20px">{{ currentUser.name }}</span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>Apellido:</strong></label>
+              <span style="font-size: 20px">{{ currentUser.lastname }}</span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>Email:</strong></label>
+              <span style="font-size: 20px">{{ currentUser.email }}</span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>Estado:</strong></label>
+              <span style="font-size: 20px">{{
+                currentUser.is_active ? "Activo" : "Inactivo"
+              }}</span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>Tipo:</strong></label>
+              <span style="font-size: 20px">
+                <ng-container *ngIf="currentUser.kind === 1"
+                  >Administrador</ng-container
+                >
+                <ng-container *ngIf="currentUser.kind === 2"
+                  >Gerente</ng-container
+                >
+                <ng-container *ngIf="currentUser.kind === 3"
+                  >Empleado</ng-container
+                >
+                <ng-container *ngIf="currentUser.kind === 4"
+                  >Soporte</ng-container
+                >
+              </span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>Fecha de Creación:</strong></label>
+              <span style="font-size: 20px">{{ currentUser.created_at }}</span>
+            </div>
+            <a
+              class="btn btn-warning mt-4"
+              style="padding: 0.8rem 3rem; display: block; margin: 0 auto"
+              routerLink="/user/{{ currentUser.userId }}"
+            >
+              Editar
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!currentUser">
+        <div class="alert alert-warning" role="alert">
+          Por favor, selecciona un usuario
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

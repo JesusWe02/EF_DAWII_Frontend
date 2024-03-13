@@ -1,0 +1,10 @@
+.container {
+  display: grid;
+  place-items: center;
+  height: calc(100vh - 200px);
+  & > h1 {
+    font-size: 36px;
+    font-weight: 500;
+    font-family: inherit;
+  }
+}

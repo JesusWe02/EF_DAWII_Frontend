@@ -1,0 +1,188 @@
+<div class="container" style="width: 500px; margin: auto">
+  <div *ngIf="currenticket" class="edit-form card mt-4">
+    <div class="card-body">
+      <h3 class="card-title text-center">Ticket</h3>
+
+      <form>
+        <div class="form-group">
+          <label for="title">Título</label>
+          <input
+            type="text"
+            class="form-control"
+            id="title"
+            [(ngModel)]="currenticket.title"
+            name="title"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="description">Descripción</label>
+          <input
+            type="text"
+            class="form-control"
+            id="description"
+            [(ngModel)]="currenticket.description"
+            name="description"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="updated_at">Actualizado</label>
+          <input
+            type="date"
+            class="form-control"
+            id="updated_at"
+            [(ngModel)]="currenticket.updated_at"
+            name="updated_at"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="created_at">Creado</label>
+          <input
+            type="date"
+            class="form-control"
+            id="created_at"
+            [(ngModel)]="currenticket.created_at"
+            name="created_at"
+          />
+        </div>
+
+        <div
+          *ngIf="currenticket && currenticket.kind"
+          class="edit-form form-group"
+        >
+          <label for="kindId">Kind:</label>
+          <select
+            id="kindId"
+            [(ngModel)]="currenticket.kind.kindId"
+            name="kindId"
+            class="form-control"
+          >
+            <option *ngFor="let kind of kinds" [value]="kind.kindId">
+              {{ kind.name }}
+            </option>
+          </select>
+        </div>
+
+        <div
+          *ngIf="currenticket && currenticket.user"
+          class="edit-form form-group"
+        >
+          <label for="userId">User:</label>
+          <select
+            id="userId"
+            [(ngModel)]="currenticket.user.userId"
+            name="userId"
+            class="form-control"
+          >
+            <option *ngFor="let user of users" [value]="user.userId">
+              {{ user.username }}
+            </option>
+          </select>
+        </div>
+
+        <div
+          *ngIf="currenticket && currenticket.project"
+          class="edit-form form-group"
+        >
+          <label for="projectId">Project:</label>
+          <select
+            id="projectId"
+            [(ngModel)]="currenticket.project.projectId"
+            name="projectId"
+            class="form-control"
+          >
+            <option
+              *ngFor="let project of projects"
+              [value]="project.projectId"
+            >
+              {{ project.name }}
+            </option>
+          </select>
+        </div>
+
+        <div
+          *ngIf="currenticket && currenticket.category"
+          class="edit-form form-group"
+        >
+          <label for="categoryId">Category:</label>
+          <select
+            id="categoryId"
+            [(ngModel)]="currenticket.category.categoryId"
+            name="categoryId"
+            class="form-control"
+          >
+            <option
+              *ngFor="let category of categories"
+              [value]="category.categoryId"
+            >
+              {{ category.name }}
+            </option>
+          </select>
+        </div>
+
+        <div
+          *ngIf="currenticket && currenticket.priority"
+          class="edit-form form-group"
+        >
+          <label for="priorityId">Priority:</label>
+          <select
+            id="priorityId"
+            [(ngModel)]="currenticket.priority.priorityId"
+            name="priorityId"
+            class="form-control"
+          >
+            <option
+              *ngFor="let priority of priorities"
+              [value]="priority.priorityId"
+            >
+              {{ priority.name }}
+            </option>
+          </select>
+        </div>
+
+        <div
+          *ngIf="currenticket && currenticket.status"
+          class="edit-form form-group"
+        >
+          <label for="statusId">Status:</label>
+          <select
+            id="statusId"
+            [(ngModel)]="currenticket.status.statusId"
+            name="statusId"
+            class="form-control"
+          >
+            <option *ngFor="let status of status" [value]="status.statusId">
+              {{ status.name }}
+            </option>
+          </select>
+        </div>
+
+        <div style="display: flex; justify-content: space-between">
+          <button
+            type="submit"
+            class="btn btn-success mr-2"
+            (click)="updateTicket()"
+          >
+            Actualizar Ticket
+          </button>
+          <button class="btn btn-danger mr-2" (click)="deleteTicket()">
+            Eliminar Ticket
+          </button>
+          <a class="btn btn-primary" routerLink="/ticket">Back to list</a>
+        </div>
+        <p class="text-center pt-4" style="font-size: 20px; color: green">
+          {{ message }}
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <div *ngIf="!currenticket" class="card mt-4">
+    <div class="card-body">
+      <br />
+      <p>Este ticket no está accesible</p>
+    </div>
+  </div>
+</div>

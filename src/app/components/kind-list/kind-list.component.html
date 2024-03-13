@@ -1,0 +1,14 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nombre</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let kind of kinds">
+      <td>{{ kind.kindId }}</td>
+      <td>{{ kind.name }}</td>
+    </tr>
+  </tbody>
+</table>

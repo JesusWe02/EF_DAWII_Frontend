@@ -1,0 +1,150 @@
+<div class="container mt-4" style="min-width: 1400px; margin: 0 auto">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="input-group mb-4">
+        <div class="input-group-prepend">
+          <a class="btn btn-primary" routerLink="/createTicket">New Ticket</a>
+        </div>
+        <input
+          type="text"
+          class="form-control ml-4"
+          placeholder="Buscar por título"
+          [(ngModel)]="title"
+        />
+        <div class="input-group-append">
+          <button
+            class="btn btn-outline-secondary"
+            type="button"
+            (click)="searchByTitle()"
+          >
+            Buscar
+          </button>
+        </div>
+      </div>
+
+      <h2>Lista de Tickets</h2>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          style="font-size: 1.2rem"
+          *ngFor="let ticket of tickets; let i = index"
+          (click)="setCurrentTicket(ticket, i)"
+          [class.active]="currentTicket === ticket"
+        >
+          {{ ticket.title }}
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-md-6">
+      <div
+        *ngIf="currentTicket"
+        class="card"
+        style="
+          border: 1px solid black;
+          border-radius: 20px;
+          box-shadow: #9c9999 8px 8px 0 0;
+          margin-bottom: 100px;
+        "
+      >
+        <div class="card-body">
+          <h4 class="card-title h2" style="text-align: center">
+            Ticket Seleccionado
+          </h4>
+
+          <div class="ticket-details">
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>ID:</strong></label>
+              <span style="font-size: 20px">{{ currentTicket.ticketId }}</span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>Título:</strong></label>
+              <span style="font-size: 20px">{{ currentTicket.title }}</span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>Descripción:</strong></label>
+              <span style="font-size: 20px">{{
+                currentTicket.description
+              }}</span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"
+                ><strong>Última Actualización:</strong></label
+              >
+              <span style="font-size: 20px">{{
+                currentTicket.updated_at
+              }}</span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>Fecha de Creación:</strong></label>
+              <span style="font-size: 20px">{{
+                currentTicket.created_at
+              }}</span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>ID de Tipo:</strong></label>
+              <span style="font-size: 20px">{{
+                currentTicket.kind?.name
+              }}</span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>ID de Usuario:</strong></label>
+              <span style="font-size: 20px">{{
+                currentTicket.user?.username
+              }}</span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>ID de Proyecto:</strong></label>
+              <span style="font-size: 20px">{{
+                currentTicket.project?.name
+              }}</span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>ID de Categoría:</strong></label>
+              <span style="font-size: 20px">{{
+                currentTicket.category?.name
+              }}</span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>ID de Prioridad:</strong></label>
+              <span style="font-size: 20px">{{
+                currentTicket.priority?.name
+              }}</span>
+            </div>
+
+            <div class="ticket-info">
+              <label class="mr-2 h5"><strong>ID de Estado:</strong></label>
+              <span style="font-size: 20px">{{
+                currentTicket.status?.name
+              }}</span>
+            </div>
+            <div style="text-align: center">
+              <a
+                class="btn btn-warning mt-4"
+                style="padding: 0.8rem 3rem; display: block; margin: 0 auto"
+                routerLink="/ticket/{{ currentTicket.ticketId }}"
+              >
+                Editar
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="!currentTicket">
+        <div class="alert alert-warning" role="alert">
+          Por favor, selecciona un ticket
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
